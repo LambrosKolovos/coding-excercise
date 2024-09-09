@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f3f1;
+  color: #333333;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: darkblue !important;
+  border-color: darkblue !important;
+}
+.ant-slider-track {
+  background: darkblue !important;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+span,
+div,
+button {
+  font-family: "Montserrat", sans-serif !important;
+}

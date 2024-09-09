@@ -1,0 +1,62 @@
+.filters_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px;
+  box-shadow: 0px 4px 4px 0px #00000026;
+  width: 15%;
+  background: #a8b2a0;
+}
+
+.filter_header {
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter_clear {
+  border: none;
+  background: transparent;
+  color: darkblue;
+}
+
+.filter_clear:hover {
+  cursor: pointer;
+}
+
+.filter_contents {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.discount_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1%;
+  margin-top: 10px;
+}
+.discount_item {
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  text-align: center;
+  padding: 5px 10px 5px 10px;
+}
+
+.discount_item:hover {
+  cursor: pointer;
+}
+
+.discount_item_active {
+  background-color: lightcyan;
+}
+
+.view_more {
+  border: none;
+  background: transparent;
+  color: darkblue;
+  display: flex;
+  gap: 10px;
+}
