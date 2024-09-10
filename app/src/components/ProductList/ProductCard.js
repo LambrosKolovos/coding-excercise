@@ -8,7 +8,6 @@ function ProductCard({ product, loading }) {
   ).toFixed(2);
 
   const startingPrice = product.price;
-
   const discount = "-" + product.discount.toFixed(1) * 100 + "%";
 
   return (

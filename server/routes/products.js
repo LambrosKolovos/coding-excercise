@@ -6,6 +6,7 @@ const router = express.Router();
 function extractFilterState(req) {
   const { filterState } = req.body;
 
+  console.log(filterState);
   return {
     brand: filterState.brand || [],
     gender: filterState.gender || [],
@@ -111,7 +112,6 @@ router.post("/product", async (req, res) => {
       product_id: id,
     });
 
-    // If product is not found, send a 404 response
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
@@ -124,7 +124,7 @@ router.post("/product", async (req, res) => {
   }
 });
 
-router.post("/category", async (req, res) => {
+router.post("/similar", async (req, res) => {
   try {
     const { category, id } = req.body;
     if (!category) {
@@ -139,7 +139,6 @@ router.post("/category", async (req, res) => {
       .limit(10)
       .toArray();
 
-    // If product is not found, send a 404 response
     if (!similiarProducts) {
       return res.status(404).json({ message: "No similar products found!" });
     }

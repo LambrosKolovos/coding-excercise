@@ -1,7 +1,7 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
-const { mongoURI, dbName, collectionName } = require("./config");
+require("dotenv").config();
 
-const client = new MongoClient(mongoURI, {
+const client = new MongoClient(process.env.MONGO_URI, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
@@ -15,11 +15,11 @@ async function connectDB() {
     console.log("Connected successfully to MongoDB");
   } catch (error) {
     console.error("MongoDB connection failed:", error);
-    process.exit(1); // Exit if connection fails
+    process.exit(1);
   }
 }
 
-const db = client.db(dbName);
-const collection = db.collection(collectionName);
+const db = client.db(process.env.DATABASE_NAME);
+const collection = db.collection(process.env.COLLECTION_NAME);
 
 module.exports = { connectDB, collection };

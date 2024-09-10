@@ -13,8 +13,29 @@ function ProductsList({ data, onChangePage, onChangePageSize, isLoading }) {
     <>
       <div className="products_wrapper">
         <ProductFilterInfo />
+        <>
+          <div className="products_grid">
+            {data.map((prod) => {
+              return (
+                <Link to={`/product/${prod.product_id}`}>
+                  <ProductCard product={prod} loading={isLoading} />;
+                </Link>
+              );
+            })}
+          </div>
+          <Pagination
+            showSizeChanger
+            defaultPageSize={20}
+            defaultCurrent={1}
+            total={totalProducts}
+            className="pagination_wrapper"
+            align="end"
+            onChange={(page) => onChangePage(page)}
+            onShowSizeChange={(_, size) => onChangePageSize(size)}
+          />
+        </>
 
-        {totalProducts === 0 ? (
+        {totalProducts === 0 && !isLoading && (
           <div
             style={{
               display: "flex",
@@ -24,31 +45,9 @@ function ProductsList({ data, onChangePage, onChangePageSize, isLoading }) {
               height: "80%",
             }}
           >
-            <img src="./no-products.png" width={400}></img>
+            <img src="./no-products.png" width={300}></img>
             <div>No products matched your search! Please try again.</div>
           </div>
-        ) : (
-          <>
-            <div className="products_grid">
-              {data.map((prod) => {
-                return (
-                  <Link to={`/product/${prod.product_id}`}>
-                    <ProductCard product={prod} loading={isLoading} />;
-                  </Link>
-                );
-              })}
-            </div>
-            <Pagination
-              showSizeChanger
-              defaultPageSize={20}
-              defaultCurrent={1}
-              total={totalProducts}
-              className="pagination_wrapper"
-              align="end"
-              onChange={(page) => onChangePage(page)}
-              onShowSizeChange={(_, size) => onChangePageSize(size)}
-            />
-          </>
         )}
       </div>
     </>

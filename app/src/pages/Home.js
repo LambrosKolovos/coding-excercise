@@ -15,6 +15,7 @@ const emptyFilterState = {
 };
 
 export const FilterContext = createContext(null);
+export const API_URL = process.env.REACT_APP_API_URL;
 
 function Home() {
   // Filter options state
@@ -32,7 +33,7 @@ function Home() {
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchFilterOptions = useCallback(() => {
-    fetch("http://localhost:3000/stockinfo")
+    fetch(`${API_URL}/stockinfo`)
       .then((response) => response.json())
       .then((data) => {
         setBrands(data.brands);
@@ -50,7 +51,7 @@ function Home() {
     };
 
     setIsLoading(true);
-    fetch("http://localhost:3000/products/filter", {
+    fetch(`${API_URL}/products/filter`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -67,14 +68,12 @@ function Home() {
   }, [filterState, activePage, pageSize]);
 
   useEffect(() => {
-    console.log("Getting opts");
-
     fetchFilterOptions();
-  }, []);
+  }, [fetchFilterOptions]);
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [fetchProducts]);
 
   // Updates state when filter is clicked resulting in new API call with update data
   const handleFilterChange = (e, category, price) => {

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "../ProductList/ProductCard";
+import { API_URL } from "../../pages/Home";
 
 function SimilarProducts({ category, id }) {
   const [similarProd, setSimilarProd] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:3000/products/category`, {
+    fetch(`${API_URL}/products/similar`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,14 +23,17 @@ function SimilarProducts({ category, id }) {
     <div>
       <div className="similar_title">SimilarProducts</div>
       <div className="similar_wrapper">
-        {similarProd &&
+        {similarProd.length > 0 ? (
           similarProd.map((prod) => {
             return (
               <Link to={`/product/${prod.product_id}`}>
                 <ProductCard product={prod} />;
               </Link>
             );
-          })}
+          })
+        ) : (
+          <div>No similar products found</div>
+        )}
       </div>
     </div>
   );
