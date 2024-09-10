@@ -6,6 +6,7 @@ import Header from "../components/Header/Header";
 import "./ProductPage.css";
 import { Breadcrumb } from "antd";
 import SimilarProducts from "../components/ProductDisplay/SimilarProducts";
+import { API_URL } from "./Home";
 
 function Product() {
   const { id } = useParams();
@@ -13,7 +14,7 @@ function Product() {
   const [navigation, setNavigation] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/products/product`, {
+    fetch(`${API_URL}/products/product`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
